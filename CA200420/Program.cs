@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,14 +11,14 @@ namespace CA200420
     {
         static void Main()
         {
-            var pc = new Szamitogep();
 
-            //pc.Processor = null; ===> nem jó!
-            //pc.Processor = "Texas Holdem TST2";  ===> nem jó!
+            var pc = new Szamitogep()
+            {
+                Processor = Processor.Intel_Core_I5,
+                Ram = 8,
+            };
 
-            pc.Processor = "krumpli"; //===>jó!
-            Console.WriteLine($"A PC-nek a processora: {pc.Processor}");
-
+            pc.GetInfo();
 
             Console.ReadKey();
         }

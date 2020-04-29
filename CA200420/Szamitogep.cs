@@ -1,57 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CA200420
 {
+    enum Processor
+    {
+        Intel_Core_I5,
+        Intel_Core_I7,
+        Intel_Core_I9,
+        AMD_Ryren_5,
+        AMD_Ryzen_7,
+    }
+
     class Szamitogep
     {
-        private static readonly List<string> _processorLista = new List<string>()
-        {
-            "Intel Core i5",
-            "Intel Core i7",
-            "Intel Core i9",
-            "AMD Ryzen 5",
-            "AMD Ryzen 7",
-        };
+        public Processor Processor { get; set; }
 
-
-        private string _processor;
-        public string Processor
+        private int _ram;
+        public int Ram
         {
+            get
+            {
+                return _ram;
+            }
             set
             {
-                if (value is null)
-                {
-                    throw new Exception("a számítógép nem működik processzor nélkül!");
-                }
-
-                if (!_processorLista.Contains(value))
-                {
-                    throw new Exception("ilyen processor nincs az adatbázisban!");
-                }
-
-                _processor = value;
+                if (value <= 0) throw new Exception("nem lehet ennyi ran a gépbben");
+                _ram = value;
             }
-            get { return _processor; }
+        }
+
+        public void GetInfo()
+        {
+            Console.WriteLine(
+                "Processor: {0}\n" +
+                "RAM:       {1} GB",
+                this.Processor, this.Ram);
         }
 
 
-        //gpu
-            //GTX 2060
-            //AMD RX570 
-        //ram
-            //4 gb
-            //8 gb
-            //16 gb
-        //drive
-            //tipus - hdd / ssd
-            //500Gb, 1T, 2T - 128 - 256 - 512           
-        //Motherbord (+cs)
-            //Z390
-            //A320
-            //X570
     }
 }
